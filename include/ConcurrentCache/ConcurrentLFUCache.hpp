@@ -1,7 +1,3 @@
-//
-// Created by Haohu Shen on 2025-07-20.
-//
-
 #ifndef CACHE_CONCURRENTLFUCACHE_HPP
 #define CACHE_CONCURRENTLFUCACHE_HPP
 

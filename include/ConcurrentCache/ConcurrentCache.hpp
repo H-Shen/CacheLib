@@ -1,14 +1,9 @@
-//
-// Created by Haohu Shen on 2025-07-20.
-//
-
 #ifndef CACHE_CONCURRENTCACHE_HPP
 #define CACHE_CONCURRENTCACHE_HPP
 
 #include "../Cache/Cache.hpp"
 #include <memory>
 #include <shared_mutex>
-#include <mutex>
 #include <stdexcept>
 
 /// 通用并发缓存装饰器:通过组合 Cache<K,V> 实现线程安全
@@ -38,7 +33,7 @@ public:
     }
 
     /// 获取，抛出 out_of_range
-    V get(const K& key) {
+    std::optional<V> get(const K& key) {
         std::shared_lock lock(m_mutex);
         return m_delegate->get(key);
     }
