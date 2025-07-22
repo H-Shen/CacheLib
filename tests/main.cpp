@@ -198,7 +198,7 @@ void test_weighted_conflict() {
     WeightedCache<int, std::pair<int, int>> cache(2);
     cache.put(1, {100, 50});
     cache.put(2, {200, 50});  // conflict
-    assert(cache.size() == 1 && cache.get(1).first == 200);
+    assert(cache.size() == 1 && cache.get(1).has_value() && cache.get(1)->first == 200);
     std::cout << "[weighted_conflict] PASS\n";
 }
 
