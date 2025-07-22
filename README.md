@@ -8,7 +8,7 @@ A header-only, C++20-compliant cache library offering multiple eviction strategi
 
 - **Unified Interface**: `Cache<K,V>` with methods:
     - `void put(const K&, const V&)`
-    - `V get(const K&)` (throws `std::out_of_range` if missing)
+    - `std::optional<V> get(const K&)` (returns `std::nullopt` if missing)
     - `void erase(const K&)`
     - `bool contains(const K&) const`
     - `std::size_t size() const noexcept`
