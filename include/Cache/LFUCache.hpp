@@ -1,7 +1,3 @@
-//
-// Created by Haohu Shen on 2025-07-20.
-//
-
 #ifndef CACHE_LFUCACHE_HPP
 #define CACHE_LFUCACHE_HPP
 
@@ -63,10 +59,10 @@ public:
         m_nodes[key] = {value, m_min_freq, std::prev(lst.end())};
     }
 
-    V get(const K &key) override {
+    std::optional<V> get(const K &key) override {
         auto it = m_nodes.find(key);
         if (it == m_nodes.end())
-            throw std::out_of_range("Key not found");
+            return std::nullopt;
 
         int freq = it->second.freq;
         auto &old_freq_list = m_freq_list[freq];

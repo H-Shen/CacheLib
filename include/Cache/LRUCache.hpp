@@ -49,10 +49,10 @@ public:
         m_map[key] = lit;
     }
 
-    V get(const K &key) override {
+    std::optional<V> get(const K &key) override {
         auto it = m_map.find(key);
         if (it == m_map.end())
-            throw std::out_of_range("key not found");
+            return std::nullopt;
         // move to back and return value
         auto lit = it->second;
         m_list.splice(m_list.end(), m_list, lit);

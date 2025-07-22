@@ -1,7 +1,6 @@
 #ifndef CACHE_RANDOMREPLACEMENTCACHE_HPP
 #define CACHE_RANDOMREPLACEMENTCACHE_HPP
 
-
 #include "Cache.hpp"
 #include <vector>
 #include <unordered_map>
@@ -56,10 +55,10 @@ public:
         m_map.emplace(key, std::make_pair(value, m_keys.size() - 1));
     }
 
-    V get(const K &key) override {
+    std::optional<V> get(const K &key) override {
         auto it = m_map.find(key);
         if (it == m_map.end())
-            throw std::out_of_range("Key not found");
+            return std::nullopt;
         return it->second.first;
     }
 

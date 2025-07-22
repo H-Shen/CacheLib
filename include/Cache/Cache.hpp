@@ -2,6 +2,7 @@
 #define CACHE_CACHE_HPP
 
 #include <cstddef>
+#include <optional>
 
 /// 通用缓存接口
 template<typename K, typename V>
@@ -23,7 +24,7 @@ public:
     virtual void put(const K &key, const V &value) = 0;
 
     /// 访问元素;不存在时抛出 std::out_of_range
-    virtual V get(const K &key) = 0;
+    virtual std::optional<V> get(const K &key) = 0;
 
     /// 删除元素;不存在时无操作
     virtual void erase(const K &key) = 0;

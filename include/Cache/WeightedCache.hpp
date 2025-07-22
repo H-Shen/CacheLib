@@ -87,10 +87,10 @@ public:
         m_weights.insert(w);
     }
 
-    std::pair<T, W> get(const K &key) override {
+    std::optional<std::pair<T, W>> get(const K &key) override {
         auto it = m_map.find(key);
         if (it == m_map.end())
-            throw std::out_of_range("Key not found");
+            return std::nullopt;
         return it->second;
     }
 
