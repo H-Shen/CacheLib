@@ -8,6 +8,7 @@
 #include "../Cache/Cache.hpp"
 #include <memory>
 #include <shared_mutex>
+#include <mutex>
 #include <stdexcept>
 
 /// 通用并发缓存装饰器:通过组合 Cache<K,V> 实现线程安全
