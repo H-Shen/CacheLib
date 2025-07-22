@@ -171,9 +171,7 @@ void test_random_concurrent_mixed() {
     auto reader = [&]() {
         for (int i = 0; i < ops * 2; ++i) {
             int k = i % ops;
-            if (cache.contains(k)) {
-                try { cache.get(k); } catch (...) {}
-            }
+            auto val = cache.get(k);
         }
     };
     std::vector<std::thread> workers;
@@ -259,9 +257,7 @@ void test_weighted_concurrent_mixed() {
     auto reader = [&]() {
         for (int i = 0; i < ops * 2; ++i) {
             int k = i % ops;
-            if (cache.contains(k)) {
-                try { cache.get(k); } catch (...) {}
-            }
+            auto val = cache.get(k);
         }
     };
     std::vector<std::thread> workers;
