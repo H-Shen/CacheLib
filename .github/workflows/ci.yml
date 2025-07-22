@@ -29,6 +29,11 @@ jobs:
       - name: Build project
         run: cmake --build build --parallel
 
-      - name: Run tests
+      - name: Run tests (non-Windows)
+        if: runner.os != 'Windows'
         run: ctest --test-dir build --output-on-failure
+      
+      - name: Run tests (Windows)
+        if: runner.os == 'Windows'
+        run: ctest --test-dir build --output-on-failure -C Debug
 
