@@ -5,6 +5,7 @@
 #include <memory>
 #include <shared_mutex>
 #include <stdexcept>
+#include <mutex>
 
 /// 通用并发缓存装饰器:通过组合 Cache<K,V> 实现线程安全
 /// 不通过继承,而是直接包含一个 std::unique_ptr<Cache<K,V>>
