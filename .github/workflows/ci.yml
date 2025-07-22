@@ -8,24 +8,27 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test on ${{ matrix.os }}
+    name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up CMake
-        uses: actions/setup-cmake@v3
+        uses: jwlawson/actions-setup-cmake@v1
+        with:
+          cmake-version: '3.31'
 
       - name: Configure CMake
         run: cmake -S . -B build
 
-      - name: Build
-        run: cmake --build build --config Release
+      - name: Build project
+        run: cmake --build build --parallel
 
       - name: Run tests
-        run: ctest --output-on-failure --build-config Release
+        run: ctest --test-dir build --output-on-failure
+
