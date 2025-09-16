@@ -50,10 +50,10 @@ Requirements:
 ```bash
 git clone <repo-url>
 cd ./CacheLib
-mkdir -p build && cd build
-cmake ..
-make
-ctest --verbose # Running Tests
+cmake -S . -B build
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+# On Windows, run 'ctest --test-dir build --output-on-failure -C Debug'
 ```
 
 ---
